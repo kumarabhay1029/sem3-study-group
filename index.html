@@ -3,180 +3,401 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>IGNOU BCA Semester 3 | Student Group Initiative</title>
+  <title>IGNOU BCA Semester 3 | Collaborative Student Group</title>
+  <meta name="description" content="Join the IGNOU BCA Semester 3 Student Group Initiative: collaborative learning, weekly study plan, and peer recognition for serious learners." />
+  <link rel="icon" href="assets/favicon.ico" />
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --primary: #003366;
+      --accent: #ffb300;
+      --bg: #f2f4f8;
+      --white: #fff;
+      --radius: 10px;
+      --shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    html {
+      scroll-behavior: smooth;
+    }
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f2f2f2;
-      color: #333;
+      font-family: 'Roboto', Arial, sans-serif;
+      background: var(--bg);
+      color: #222;
+      font-size: 17px;
+      line-height: 1.6;
     }
     header {
-      background: #003366;
-      color: white;
-      padding: 20px;
+      background: linear-gradient(90deg, var(--primary) 60%, #0072b1 100%);
+      color: var(--white);
+      padding: 40px 20px 20px 20px;
       text-align: center;
+      border-bottom-left-radius: var(--radius);
+      border-bottom-right-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    header img {
+      width: 60px;
+      margin-bottom: 10px;
+    }
+    header h1 {
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+    header p {
+      font-size: 1.1rem;
+      opacity: 0.95;
+    }
+    nav {
+      width: 100%;
+      background: #e8eaf6;
+      padding: 10px 0;
+      text-align: center;
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    nav a {
+      color: var(--primary);
+      text-decoration: none;
+      margin: 0 18px;
+      font-weight: 500;
+      font-size: 1rem;
+      transition: color 0.2s;
+    }
+    nav a:hover {
+      color: var(--accent);
+    }
+    main {
+      max-width: 950px;
+      margin: 30px auto 0 auto;
+      padding: 0 15px 40px 15px;
     }
     section {
-      max-width: 960px;
-      margin: auto;
-      padding: 20px;
-      background: white;
-      margin-top: 20px;
-      border-radius: 8px;
+      background: var(--white);
+      border-radius: var(--radius);
+      margin: 24px 0;
+      padding: 32px 28px;
+      box-shadow: var(--shadow);
     }
     h2 {
-      color: #003366;
+      color: var(--primary);
+      margin-top: 0;
+      font-size: 1.5rem;
+    }
+    .banner-img {
+      width: 100%;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      max-height: 290px;
+      object-fit: cover;
+      margin-bottom: 12px;
+    }
+    ul, ol {
+      padding-left: 24px;
+      margin: 12px 0;
+    }
+    li {
+      margin-bottom: 7px;
+    }
+    .roles-list li {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+    .roles-list strong {
+      min-width: 110px;
+      display: inline-block;
+      color: var(--primary);
+    }
+    .plan-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+      margin-bottom: 5px;
+    }
+    .plan-table th, .plan-table td {
+      padding: 10px 8px;
+      text-align: left;
+      border-bottom: 1px solid #e0e0e0;
+      font-size: 1rem;
+    }
+    .plan-table th {
+      background: #e3f2fd;
+      color: var(--primary);
+    }
+    .plan-table td:first-child {
+      font-weight: bold;
+      width: 110px;
+    }
+    #join-form {
+      border-left: 4px solid var(--primary);
+      background: #f8fafc;
+    }
+    .form-note {
+      background: #fffde7;
+      color: #795548;
+      border: 1px solid #ffe082;
+      border-radius: 6px;
+      padding: 10px 14px;
+      margin-bottom: 18px;
+      font-size: 0.98rem;
+    }
+    .contributors-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--white);
+      margin-top: 15px;
+    }
+    .contributors-table th, .contributors-table td {
+      padding: 11px 10px;
+      border-bottom: 1px solid #e3e3e3;
+      text-align: center;
+    }
+    .contributors-table th {
+      background: #e3f2fd;
+      color: var(--primary);
+      font-size: 1rem;
+    }
+    .contributors-table tr:nth-child(even) {
+      background: #f6f9fc;
+    }
+    .contributors-table img {
+      height: 32px;
+      border-radius: 6px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.07);
+      transition: transform 0.2s;
+    }
+    .contributors-table img:hover {
+      transform: scale(1.12);
     }
     .badges {
       display: flex;
       flex-wrap: wrap;
       gap: 20px;
-      margin-top: 10px;
+      margin-top: 18px;
+      justify-content: flex-start;
     }
     .badge {
       width: 180px;
+      background: #f6f9fc;
+      border-radius: var(--radius);
+      box-shadow: 0 1px 5px rgba(0,0,0,0.06);
+      padding: 14px 8px;
       text-align: center;
+      transition: box-shadow 0.2s;
     }
     .badge img {
-      width: 100%;
-      border-radius: 10px;
+      width: 70%;
+      border-radius: 8px;
+      margin-bottom: 8px;
+    }
+    .badge p {
+      font-size: 1rem;
+      color: #333;
+      margin: 0;
+      font-weight: 500;
+    }
+    .policies-list li::before {
+      content: '✔️';
+      margin-right: 8px;
+      color: var(--accent);
+      font-size: 0.9em;
+    }
+    .learning-list li::before {
+      content: '⭐';
+      margin-right: 8px;
+      color: #ffb300;
+    }
+    @media (max-width: 700px) {
+      header h1 {
+        font-size: 1.3rem;
+      }
+      .badges {
+        flex-direction: column;
+        align-items: center;
+      }
+      section {
+        padding: 18px 8px;
+      }
     }
     footer {
-      background: #003366;
-      color: white;
+      background: var(--primary);
+      color: var(--white);
       text-align: center;
-      padding: 15px;
-      margin-top: 40px;
+      padding: 18px 8px;
+      border-top-left-radius: var(--radius);
+      border-top-right-radius: var(--radius);
+      font-size: 1rem;
+      margin-top: 50px;
+      box-shadow: var(--shadow);
+    }
+    .footer-links {
+      margin-top: 7px;
+      font-size: 0.97rem;
+    }
+    .footer-links a {
+      color: var(--accent);
+      margin: 0 9px;
+      text-decoration: none;
+    }
+    .footer-links a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
   <header>
+    <img src="assets/logo_ignou.png" alt="IGNOU Logo" />
     <h1>IGNOU BCA Semester 3<br>Student Group Initiative</h1>
-    <p>Learn. Lead. Grow Together.</p>
+    <p>Learn. Lead. Grow Together.<br><span style="font-size:0.95em; opacity:0.8;">A collaborative learning platform for future tech leaders</span></p>
   </header>
-
-  <section>
-    <img src="assets/banner_sem3.png" alt="Semester 3 Banner" style="width: 100%; border-radius: 10px;" />
-  </section>
-
-  <section>
-    <h2>📘 About the Group</h2>
-    <p>This is a student-led initiative built for full-time, serious learners in Semester 3 of IGNOU BCA (New). We focus on collaborative learning, logic building, and practical programming in C, C++, Python, DBMS, and OS.</p>
-  </section>
-
-  <section>
-    <h2>👥 Admin Team Roles</h2>
-    <ul>
-      <li><strong>Lead Admin:</strong> Manages group structure, strategy, and discipline.</li>
-      <li><strong>Content Admin:</strong> Shares weekly study material and resources.</li>
-      <li><strong>Engagement Admin:</strong> Welcomes members and boosts group participation.</li>
-    </ul>
-  </section>
-
-  <section>
-    <h2>🗕 Weekly Study Plan</h2>
-    <ul>
-      <li><strong>Monday:</strong> Concept Day – Learn/Share one key topic</li>
-      <li><strong>Tuesday:</strong> Logic Questions (C/C++)</li>
-      <li><strong>Wednesday:</strong> Programming Practice</li>
-      <li><strong>Thursday:</strong> Assignment Help & Collaboration</li>
-      <li><strong>Friday:</strong> Voice Doubt Session</li>
-      <li><strong>Saturday:</strong> Mini Project or Group Challenge</li>
-      <li><strong>Sunday:</strong> Weekly Recap & Motivation</li>
-    </ul>
-  </section>
-
-  <section id="join-form" style="font-family: Arial, sans-serif; padding: 30px;">
-  <h2>📋 Join Our Student Group</h2>
-  <p>Please fill out the following form to officially join the <strong>Semester 3 IGNOU Student-led Group</strong>.</p>
-
-  <iframe 
-    src="https://docs.google.com/forms/d/e/1FAIpQLSeEbGZlALuNxoOdUq6VpRK2pS5mi2znI-DbgNgiQ20aUumH_Q/viewform?embedded=true" 
-    width="100%" 
-    height="800" 
-    frameborder="0" 
-    marginheight="0" 
-    marginwidth="0">
-    Loading…
-  </iframe>
-</section>
-
-
-  <section>
-  <h2>🏅 Contributor Recognition</h2>
-  <p>We proudly recognize the efforts of active members who contribute knowledge, notes, discussions, or support.</p>
-  <table border="0" cellspacing="10">
-    <tr>
-      <th>Contributor Name</th>
-      <th>Role</th>
-      <th>Badge</th>
-    </tr>
-    <tr>
-      <td>Abhay Kumar</td>
-      <td>Founder & Lead Admin</td>
-      <td><img src="https://img.shields.io/badge/Contributor-Active%20Member-orange?style=for-the-badge&logo=github" alt="Badge"></td>
-    </tr>
-    <tr>
-      <td>Rishabh Arora</td>
-      <td>Co-Admin (Manager)</td>
-      <td><img src="https://img.shields.io/badge/Contributor-Group%20Supporter-blue?style=for-the-badge&logo=github" alt="Badge"></td>
-    </tr>
-    <tr>
-      <td>Anjali Sharma</td>
-      <td>Content Contributor</td>
-      <td><img src="https://img.shields.io/badge/Contributor-Study%20Partner-green?style=for-the-badge&logo=github" alt="Badge"></td>
-    </tr>
-    <tr>
-      <td><em>You?</em></td>
-      <td>Become one today</td>
-      <td><img src="https://img.shields.io/badge/Join%20Now-Contribute%20Today-yellow?style=for-the-badge&logo=github" alt="Badge"></td>
-    </tr>
-  </table>
-</section>
-
-  <section>
-    <h2>📌 Group Policies</h2>
-    <ul>
-      <li>Respect everyone and keep the space distraction-free</li>
-      <li>Only study-related discussions allowed</li>
-      <li>No AI-generated answers for assignments</li>
-      <li>Stay active and contribute to learning</li>
-    </ul>
-  </section>
-
-  <section>
-    <h2>🎓 What You'll Learn</h2>
-    <p>By participating in this group, you'll build:</p>
-    <ul>
-      <li>Strong technical understanding (C, C++, Python)</li>
-      <li>Soft skills like leadership, collaboration, and communication</li>
-      <li>Discipline to study consistently with a team</li>
-      <li>Experience managing and engaging in a learning community</li>
-    </ul>
-  </section>
-
-  <section>
-    <h2>🏅 Admin Badges</h2>
-    <div class="badges">
-      <div class="badge">
-        <img src="assets/lead_admin_badge.png" alt="Lead Admin Badge">
-        <p><strong>Lead Admin</strong></p>
+  <nav>
+    <a href="#about">About</a>
+    <a href="#roles">Admin Roles</a>
+    <a href="#plan">Weekly Plan</a>
+    <a href="#join-form">Join</a>
+    <a href="#contributors">Recognition</a>
+    <a href="#policies">Policies</a>
+    <a href="#learning">Learning</a>
+    <a href="#badges">Admin Badges</a>
+  </nav>
+  <main>
+    <section>
+      <img src="assets/banner_sem3.png" alt="Semester 3 Banner" class="banner-img" />
+    </section>
+    <section id="about">
+      <h2>📘 About the Group</h2>
+      <p>
+        <strong>This student-led initiative</strong> is designed for dedicated, full-time learners in <b>IGNOU BCA (New) Semester 3</b>. Our mission is to foster collaborative learning, logic building, and hands-on programming in <b>C, C++, Python, DBMS, and OS</b>. Members benefit from peer support, resource sharing, and interactive study sessions to maximize their academic and practical skills.
+      </p>
+    </section>
+    <section id="roles">
+      <h2>👥 Admin Team Roles</h2>
+      <ul class="roles-list">
+        <li><img src="assets/lead_admin_badge.png" alt="Lead Admin" style="width:28px;"> <strong>Lead Admin:</strong> Manages group structure, strategy, and discipline.</li>
+        <li><img src="assets/content_admin_badge.png" alt="Content Admin" style="width:28px;"> <strong>Content Admin:</strong> Shares weekly study material and resources.</li>
+        <li><img src="assets/engagement_admin_badge.png" alt="Engagement Admin" style="width:28px;"> <strong>Engagement Admin:</strong> Welcomes members and boosts group participation.</li>
+      </ul>
+      <p style="font-size:0.98em; color:#415;">Admins ensure a friendly, inclusive, and focused environment for all members.</p>
+    </section>
+    <section id="plan">
+      <h2>🗓️ Weekly Study Plan</h2>
+      <table class="plan-table">
+        <thead>
+          <tr>
+            <th>Day</th>
+            <th>Focus</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Monday</td><td>Concept Day</td><td>📘 Learn/Share one key topic</td></tr>
+          <tr><td>Tuesday</td><td>Logic Practice</td><td>💡 Solve C/C++ logic questions</td></tr>
+          <tr><td>Wednesday</td><td>Coding Practice</td><td>👨‍💻 Practice programming together</td></tr>
+          <tr><td>Thursday</td><td>Assignment Help</td><td>🤝 Collaborate on assignments</td></tr>
+          <tr><td>Friday</td><td>Voice Session</td><td>🎤 Doubt clearing via voice chat</td></tr>
+          <tr><td>Saturday</td><td>Mini Project</td><td>🛠️ Group challenge/project</td></tr>
+          <tr><td>Sunday</td><td>Recap & Motivate</td><td>🌟 Weekly recap and motivation</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:0.98em; color:#415;">Consistent participation improves learning outcomes. All days are optional but strongly encouraged!</p>
+    </section>
+    <section id="join-form">
+      <h2>📋 Join Our Student Group</h2>
+      <div class="form-note">
+        <strong>Note:</strong> Fill in your details to officially join the Semester 3 IGNOU Student Group. Your information remains confidential and is used only for group management.
       </div>
-      <div class="badge">
-        <img src="assets/content_admin_badge.png" alt="Content Admin Badge">
-        <p><strong>Content Admin</strong></p>
+      <iframe 
+        src="https://docs.google.com/forms/d/e/1FAIpQLSeEbGZlALuNxoOdUq6VpRK2pS5mi2znI-DbgNgiQ20aUumH_Q/viewform?embedded=true" 
+        width="100%" 
+        height="800" 
+        frameborder="0" 
+        marginheight="0" 
+        marginwidth="0"
+        title="IGNOU BCA Sem 3 Group Registration">
+        Loading…
+      </iframe>
+    </section>
+    <section id="contributors">
+      <h2>🏅 Contributor Recognition</h2>
+      <p>We proudly recognize the efforts of active members who share knowledge, notes, discussions, or support peers. <b>Your contribution can inspire others!</b></p>
+      <table class="contributors-table">
+        <tr>
+          <th>Contributor Name</th>
+          <th>Role</th>
+          <th>Badge</th>
+        </tr>
+        <tr>
+          <td><b>Abhay Kumar</b></td>
+          <td>Founder & Lead Admin</td>
+          <td><img src="https://img.shields.io/badge/Contributor-Active%20Member-orange?style=for-the-badge&logo=github" alt="Active Member Badge"></td>
+        </tr>
+        <tr>
+          <td>Rishabh Arora</td>
+          <td>Co-Admin (Manager)</td>
+          <td><img src="https://img.shields.io/badge/Contributor-Group%20Supporter-blue?style=for-the-badge&logo=github" alt="Group Supporter Badge"></td>
+        </tr>
+        <tr>
+          <td>Anjali Sharma</td>
+          <td>Content Contributor</td>
+          <td><img src="https://img.shields.io/badge/Contributor-Study%20Partner-green?style=for-the-badge&logo=github" alt="Study Partner Badge"></td>
+        </tr>
+        <tr>
+          <td><em>You?</em></td>
+          <td>Become one today</td>
+          <td><img src="https://img.shields.io/badge/Join%20Now-Contribute%20Today-yellow?style=for-the-badge&logo=github" alt="Join Now Badge"></td>
+        </tr>
+      </table>
+    </section>
+    <section id="policies">
+      <h2>📌 Group Policies</h2>
+      <ul class="policies-list">
+        <li>Respect everyone and keep the space distraction-free</li>
+        <li>Only study-related discussions allowed</li>
+        <li>No AI-generated answers for assignments</li>
+        <li>Stay active and contribute to learning</li>
+      </ul>
+      <p style="font-size:0.94em; color:#888; margin:7px 0 0 0;">Policies ensure a fair, focused, and helpful environment for all.</p>
+    </section>
+    <section id="learning">
+      <h2>🎓 What You'll Learn</h2>
+      <p>By participating, you’ll build:</p>
+      <ul class="learning-list">
+        <li>Solid technical foundation (C, C++, Python, DBMS, OS)</li>
+        <li>Leadership, collaboration, and communication skills</li>
+        <li>Discipline to study consistently with a team</li>
+        <li>Experience managing and engaging in a learning community</li>
+      </ul>
+    </section>
+    <section id="badges">
+      <h2>🏅 Admin Badges</h2>
+      <div class="badges">
+        <div class="badge">
+          <img src="assets/lead_admin_badge.png" alt="Lead Admin Badge">
+          <p><strong>Lead Admin</strong></p>
+        </div>
+        <div class="badge">
+          <img src="assets/content_admin_badge.png" alt="Content Admin Badge">
+          <p><strong>Content Admin</strong></p>
+        </div>
+        <div class="badge">
+          <img src="assets/engagement_admin_badge.png" alt="Engagement Admin Badge">
+          <p><strong>Engagement Admin</strong></p>
+        </div>
       </div>
-      <div class="badge">
-        <img src="assets/engagement_admin_badge.png" alt="Engagement Admin Badge">
-        <p><strong>Engagement Admin</strong></p>
-      </div>
-    </div>
-  </section>
-
+      <p style="margin-top:15px; color:#607d8b; font-size:0.98em;">Want to earn a badge? Step up, contribute regularly, and help your peers!</p>
+    </section>
+  </main>
   <footer>
-    &copy; 2025 IGNOU BCA Student Initiative | Designed by Students for Students
+    &copy; 2025 IGNOU BCA Student Initiative &nbsp; | &nbsp; Designed by Students for Students
+    <div class="footer-links">
+      <a href="#join-form">Join Group</a> |
+      <a href="mailto:contact@ignoubca3group.com">Contact</a>
+    </div>
   </footer>
 </body>
 </html>
