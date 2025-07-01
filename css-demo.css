@@ -1,73 +1,73 @@
 body {
   margin: 0;
   font-family: 'Roboto', Arial, sans-serif;
-  background: linear-gradient(135deg, #f6f8fa 0%, #e3edfa 100%);
+  background: #f6f8fa;
   color: #222;
   line-height: 1.6;
   min-height: 100vh;
 }
 
-/* Header */
 header {
-  background: linear-gradient(90deg, #003366 0%, #2196f3 100%);
+  background: #2196f3;
   color: #fff;
-  padding: 36px 10px 22px 10px;
+  padding: 30px 10px 16px 10px;
   text-align: center;
   border-bottom: 3px solid #134d8a;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+}
+
+.logo-img {
+  width: 90px;
+  height: auto;
+  margin-bottom: 10px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 header h1 {
-  margin: 10px 0 6px 0;
-  font-size: 2.1rem;
+  margin: 6px 0 6px 0;
+  font-size: 2rem;
   font-weight: 700;
-  letter-spacing: 0.4px;
-  color: #fff; /* Always fallback! */
+  letter-spacing: 0.2px;
+  color: #fff;
 }
 
-/* Headings with full-width blue bar */
-section h2 {
-  position: relative;
-  font-size: 1.32rem;
+.subtitle {
+  font-size: 1.13rem;
   margin-top: 0;
-  margin-bottom: 18px;
-  color: #134d8a; /* Always visible fallback */
-  padding-left: 18px;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  background: none;
-  border: none;
-  display: block;
-  z-index: 1;
-  line-height: 1.25;
-  overflow-wrap: break-word;
-  word-break: break-word;
-}
-section h2::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 100%;
-  background: #e3f2fd;
-  border-left: 4px solid #2196f3;
-  border-radius: 7px 0 0 7px;
-  z-index: -1;
+  margin-bottom: 0;
+  color: #e3edfa;
 }
 
-/* Gradient effect only where supported */
-@supports (-webkit-background-clip: text) {
-  header h1, section h2 {
-    background: linear-gradient(90deg, #00eaff 0%, #2196f3 60%, #8fd3f4 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-fill-color: transparent;
+/* Techy Neon Scroller */
+.techy-scroller {
+  background: #060e1a;
+  padding: 0;
+  overflow: hidden;
+  border-bottom: 2px solid #00eaff;
+  box-shadow: 0 4px 24px #00eaff22;
+}
+.techy-scroller .scroll-text {
+  display: inline-block;
+  white-space: nowrap;
+  color: #00eaff;
+  font-size: 1.18rem;
+  font-family: 'Consolas', 'Roboto Mono', 'Menlo', monospace;
+  font-weight: 600;
+  text-shadow: 0 0 7px #00eaff, 0 0 2px #fff, 0 0 14px #00eaff99;
+  padding: 9px 0;
+  animation: scroll-left 23s linear infinite;
+}
+@keyframes scroll-left {
+  0% {
+    transform: translateX(100vw);
+  }
+  100% {
+    transform: translateX(-100%);
   }
 }
 
-/* Section box */
 section {
   max-width: 950px;
   margin: 22px auto 0 auto;
@@ -78,7 +78,6 @@ section {
   position: relative;
 }
 
-/* Banner image */
 section img, .banner-img {
   width: 100%;
   border-radius: 12px;
@@ -86,14 +85,75 @@ section img, .banner-img {
   margin-bottom: 10px;
 }
 
-/* Admin roles, plan, policies etc. */
+section h2 {
+  font-size: 1.26rem;
+  margin-top: 0;
+  margin-bottom: 14px;
+  color: #1565c0;
+  letter-spacing: 0.5px;
+  font-weight: 700;
+  background: none;
+}
+
 ul {
   padding-left: 23px;
   margin-bottom: 12px;
 }
 ul li {
   margin-bottom: 8px;
-  font-size: 1.06rem;
+  font-size: 1.07rem;
+}
+
+/* Notes section */
+#notes-list {
+  margin-top: 38px;
+}
+#notes-list h2 {
+  margin-bottom: 9px;
+}
+#notes-ul {
+  list-style-type: disc;
+  margin-left: 28px;
+  margin-bottom: 14px;
+  margin-top: 0;
+  font-size: 1.09rem;
+}
+#notes-ul li {
+  margin-bottom: 11px;
+}
+#notes-ul a {
+  color: #1565c0;
+  text-decoration: underline;
+  transition: color 0.18s;
+}
+#notes-ul a:hover {
+  color: #1e88e5;
+  text-decoration: underline;
+}
+
+/* Upload Button */
+#notes-list button {
+  padding: 9px 22px;
+  border: none;
+  background: #2196f3;
+  color: #fff;
+  border-radius: 7px;
+  font-size: 1.08rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.18s;
+  margin-bottom: 7px;
+  box-shadow: 0 1px 6px #2196f333;
+}
+#notes-list button:hover {
+  background: #1565c0;
+  color: #fff;
+}
+
+.note {
+  font-size: 0.98em;
+  color: #415;
+  margin: 7px 0 0 0;
 }
 
 /* Badges grid */
@@ -149,52 +209,6 @@ th {
 td img {
   vertical-align: middle;
   height: 30px;
-}
-
-/* Notes list */
-#notes-list {
-  margin-top: 38px;
-}
-#notes-list h2 {
-  margin-bottom: 9px;
-}
-#notes-ul {
-  list-style-type: disc;
-  margin-left: 28px;
-  margin-bottom: 14px;
-  margin-top: 0;
-  font-size: 1.08rem;
-}
-#notes-ul li {
-  margin-bottom: 11px;
-}
-#notes-ul a {
-  color: #1565c0;
-  text-decoration: underline;
-  transition: color 0.18s;
-}
-#notes-ul a:hover {
-  color: #1e88e5;
-  text-decoration: underline;
-}
-
-/* Upload Button */
-#notes-list button {
-  padding: 9px 22px;
-  border: none;
-  background: linear-gradient(90deg, #2196f3 0%, #00eaff 100%);
-  color: #fff;
-  border-radius: 7px;
-  font-size: 1.07rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.23s;
-  margin-bottom: 7px;
-  box-shadow: 0 1px 6px #2196f333;
-}
-#notes-list button:hover {
-  background: linear-gradient(90deg, #00eaff 0%, #1565c0 100%);
-  color: #fff;
 }
 
 /* Join Form */
@@ -255,9 +269,6 @@ footer {
   }
   section h2 {
     font-size: 1.09rem;
-    padding-left: 9px;
-    padding-top: 7px;
-    padding-bottom: 7px;
   }
   #join-form {
     padding: 8px 2vw 8px 2vw;
