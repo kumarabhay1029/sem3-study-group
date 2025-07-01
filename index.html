@@ -233,5 +233,48 @@
       <a href="mailto:superk.1029@gmail.com">Contact: superk.1029@gmail.com</a>
     </div>
   </footer>
+
+  <script>
+// Teaching Note: This script auto-fetches approved notes for the group.
+// Change only the SHEET_CSV_URL if you make a new Sheet.
+const SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTG7r3mJfbzhwUS2wdsOLfUcAntXzKWsVDplSvSWKP2S-awbtoIDPXnQbz64zXH3sh0dHj7vDd92jPe/pub?output=csv';
+
+// Simple CSV parser (for small group sheets)
+function parseCSV(text) {
+  const lines = text.split('\n').filter(l => l.trim());
+  const headers = lines[0].split(',');
+  return lines.slice(1).map(line => {
+    const values = line.split(',');
+    const obj = {};
+    headers.forEach((h,i) => obj[h.trim()] = (values[i]||'').trim());
+    return obj;
+  });
+}
+
+fetch(SHEET_CSV_URL)
+  .then(r => r.text())
+  .then(csv => {
+    const notes = parseCSV(csv);
+    // Only show notes where you (the admin) type yes in Approved column
+    const approvedNotes = notes.filter(n => n.Approved && n.Approved.toLowerCase() === 'yes');
+    const ul = document.getElementById('notes-ul');
+    if (approvedNotes.length === 0) {
+      ul.innerHTML = '<li>No notes available yet.</li>';
+      return;
+    }
+    ul.innerHTML = approvedNotes.map(note => {
+      // Syntax: COURSE CODE covered topics - by Name
+      const course = note["Course Code"] || '';
+      const topic = note["Topic / Title"] || note["Topic"] || '';
+      const name = note["Name"] || '';
+      const link = note["Upload Notes"] || note["Upload Notes:"] || '#';
+      // Teaching convention: course code first, then covered topic(s)
+      return `<li><a href="${link}" target="_blank">${course} covered ${topic} - by ${name}</a></li>`;
+    }).join('');
+  })
+  .catch(e => {
+    document.getElementById('notes-ul').innerHTML = '<li>Could not load notes.</li>';
+  });
+</script>
 </body>
 </html>
