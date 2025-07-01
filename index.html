@@ -18,7 +18,9 @@
 
   <section>
     <h2>📘 About the Group</h2>
-    <p>This is a student-led initiative built for full-time, serious learners in Semester 3 of IGNOU BCA (New). We focus on collaborative learning, logic building, and practical programming in C, C++, Python, DBMS, and OS.</p>
+    <p>
+      This is a student-led initiative built for full-time, serious learners in Semester 3 of IGNOU BCA (New). We focus on collaborative learning, logic building, and practical programming in C, C++, Python, DBMS, and OS.
+    </p>
   </section>
 
   <section>
@@ -28,6 +30,9 @@
       <li><strong>Content Admin:</strong> Shares weekly study material and resources.</li>
       <li><strong>Engagement Admin:</strong> Welcomes members and boosts group participation.</li>
     </ul>
+    <p style="font-size:0.98em; color:#415;">
+      Admins ensure a friendly, inclusive, and focused environment for all members.
+    </p>
   </section>
 
   <section>
@@ -41,11 +46,16 @@
       <li><strong>Saturday:</strong> Mini Project or Group Challenge</li>
       <li><strong>Sunday:</strong> Weekly Recap & Motivation</li>
     </ul>
+    <p style="font-size:0.98em; color:#415;">
+      Consistent participation improves learning outcomes. All days are optional but strongly encouraged!
+    </p>
   </section>
 
   <section id="join-form">
     <h2>📋 Join Our Student Group</h2>
-    <p>Please fill out the following form to officially join the <strong>Semester 3 IGNOU Student-led Group</strong>.</p>
+    <p>
+      Please fill out the following form to officially join the <strong>Semester 3 IGNOU Student-led Group</strong>.
+    </p>
     <iframe 
       src="https://docs.google.com/forms/d/e/1FAIpQLSeEbGZlALuNxoOdUq6VpRK2pS5mi2znI-DbgNgiQ20aUumH_Q/viewform?embedded=true" 
       width="100%" 
@@ -60,7 +70,9 @@
 
   <section>
     <h2>🏅 Contributor Recognition</h2>
-    <p>We proudly recognize the efforts of active members who contribute knowledge, notes, discussions, or support.</p>
+    <p>
+      We proudly recognize the efforts of active members who contribute knowledge, notes, discussions, or support.
+    </p>
     <table>
       <tr>
         <th>Contributor Name</th>
@@ -98,6 +110,9 @@
       <li>No AI-generated answers for assignments</li>
       <li>Stay active and contribute to learning</li>
     </ul>
+    <p style="font-size:0.94em; color:#888; margin:7px 0 0 0;">
+      Policies ensure a fair, focused, and helpful environment for all.
+    </p>
   </section>
 
   <section>
@@ -129,8 +144,74 @@
     </div>
   </section>
 
+  <section id="notes-list">
+    <h2>📝 Shared Class Notes</h2>
+    <ul id="notes-ul">
+      <!-- Notes will appear here automatically -->
+    </ul>
+    <p>
+      <a href="https://forms.gle/6ANP6p7xSeMZpKKA7" target="_blank">
+        <button>Upload Your Notes</button>
+      </a>
+    </p>
+    <p style="font-size:0.95em;color:#555;">
+      All notes are free to access. Please upload only original class notes, not copyrighted material.<br>
+      <strong>How it works:</strong> Every submission is reviewed. Only approved notes are published for students.
+    </p>
+  </section>
+
   <footer>
     &copy; 2025 IGNOU BCA Student Initiative | Designed by Students for Students
   </footer>
+
+  <script>
+    // Use your published CSV link from Google Sheets here!
+    const SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTG7r3mJfbzhwUS2wdsOLfUcAntXzKWsVDplSvSWKP2S-awbtoIDPXnQbz64zXH3sh0dHj7vDd92jPe/pub?output=csv';
+
+    // Robust CSV parser for simple classroom use
+    function parseCSV(text) {
+      const lines = text.split('\n').filter(l => l.trim());
+      const headers = lines[0].split(',').map(h => h.trim());
+      return lines.slice(1).map(line => {
+        // Handles quoted commas
+        let regex = /(".*?"|[^",\s]+)(?=\s*,|\s*$)/g;
+        let values = [];
+        let match;
+        while (match = regex.exec(line)) values.push(match[1].replace(/^"|"$/g, ''));
+        const obj = {};
+        headers.forEach((h, i) => obj[h] = (values[i] || '').trim());
+        return obj;
+      });
+    }
+
+    fetch(SHEET_CSV_URL)
+      .then(r => r.text())
+      .then(csv => {
+        const notes = parseCSV(csv);
+        // Only show approved notes (case-insensitive)
+        const approvedNotes = notes.filter(n => n['Approved'] && n['Approved'].toLowerCase() === 'yes');
+        const ul = document.getElementById('notes-ul');
+        if (!ul) return;
+        if (approvedNotes.length === 0) {
+          ul.innerHTML = '<li>No notes available yet.</li>';
+          return;
+        }
+        ul.innerHTML = approvedNotes.map(note => {
+          // Use your classroom-friendly column names:
+          const course = note["Course Code"] || '';
+          const topic = note["Topic"] || '';
+          const name = note["Name"] || '';
+          const link = note["Upload Notes"] || '#';
+          // Only show if there's a link and at least a topic or course
+          if (!link || link === '#') return '';
+          // Teaching-based: show course covered topic - by name
+          return `<li><a href="${link}" target="_blank">${course ? course : ''}${course && topic ? ' covered ' : ''}${topic ? topic : ''}${(course || topic) ? ' - by ' : ''}${name}</a></li>`;
+        }).join('') || '<li>No notes available yet.</li>';
+      })
+      .catch(e => {
+        const ul = document.getElementById('notes-ul');
+        if (ul) ul.innerHTML = '<li>Could not load notes.</li>';
+      });
+  </script>
 </body>
 </html>
