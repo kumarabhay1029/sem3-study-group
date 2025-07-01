@@ -6,7 +6,6 @@
   --radius: 12px;
   --shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
-
 body {
   margin: 0;
   font-family: 'Roboto', Arial, sans-serif;
@@ -15,7 +14,6 @@ body {
   font-size: 17px;
   line-height: 1.6;
 }
-
 header {
   background: linear-gradient(90deg, var(--primary) 60%, #0072b1 100%);
   color: var(--white);
@@ -26,7 +24,6 @@ header {
   box-shadow: var(--shadow);
   position: relative;
 }
-
 header img {
   width: 90px;
   height: 90px;
@@ -40,19 +37,17 @@ header img {
   margin-right: auto;
   background: #e3f2fd;
 }
-
 .banner-img {
   width: 100%;
   max-width: 950px;
-  max-height: 300px;
+  height: auto;
   display: block;
   margin: 30px auto 12px auto;
   border-radius: var(--radius);
   box-shadow: var(--shadow);
-  object-fit: contain; /* ensures full image visible, not cropped */
+  object-fit: contain;
   background: #e3f2fd;
 }
-
 nav {
   width: 100%;
   background: #e8eaf6;
@@ -77,7 +72,6 @@ nav a:hover, nav a:focus {
   color: var(--accent);
   border-color: var(--accent);
 }
-
 main {
   max-width: 950px;
   margin: 36px auto 0 auto;
@@ -90,7 +84,6 @@ section {
   padding: 33px 30px;
   box-shadow: var(--shadow);
 }
-
 h2 {
   color: var(--primary);
   margin-top: 0;
@@ -98,7 +91,6 @@ h2 {
   font-weight: 700;
   letter-spacing: 0.5px;
 }
-
 ul, ol {
   padding-left: 26px;
   margin: 13px 0;
@@ -181,7 +173,6 @@ li {
   margin-right: 8px;
   color: #ffb300;
 }
-
 input[type="text"], input[type="email"], textarea {
   width: 100%;
   border: 1.5px solid #cfd8dc;
@@ -213,7 +204,6 @@ button:hover, .control-btn:hover {
   background: var(--accent);
   color: var(--primary);
 }
-
 .circle-container {
   position: relative;
   width: 350px;
@@ -265,8 +255,6 @@ button:hover, .control-btn:hover {
   gap: 26px;
   margin-bottom: 24px;
 }
-
-/* --- Footer --- */
 footer {
   background: var(--primary);
   color: var(--white);
@@ -290,7 +278,6 @@ footer {
 .footer-links a:hover {
   text-decoration: underline;
 }
-
 @media (max-width: 800px) {
   header img { width: 60px; height: 60px; }
   .banner-img { max-height: 150px; }
