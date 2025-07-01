@@ -284,3 +284,54 @@ footer {
   .circle-container { width: 200px; height: 200px; }
   .circle-item { width: 44px; height: 44px; font-size: 0.83rem; }
 }
+
+#notes-list {
+  background: #f6f9fc;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  padding: 30px 24px;
+  margin: 30px 0;
+}
+
+#notes-list h2 {
+  color: #003366;
+  margin-top: 0;
+}
+
+#notes-list ul {
+  padding-left: 24px;
+  margin: 20px 0;
+}
+
+#notes-list li {
+  margin-bottom: 16px;
+  font-size: 1.08em;
+  list-style: disc;
+}
+
+#notes-list a {
+  color: #1976d2;
+  text-decoration: underline;
+  transition: color 0.2s;
+}
+
+#notes-list a:hover {
+  color: #ffb300;
+}
+
+#notes-list button {
+  background: #003366;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 22px;
+  font-size: 1em;
+  margin-top: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+#notes-list button:hover {
+  background: #ffb300;
+  color: #003366;
+}
