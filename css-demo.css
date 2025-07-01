@@ -276,15 +276,8 @@ footer {
 .footer-links a:hover {
   text-decoration: underline;
 }
-@media (max-width: 800px) {
-  .logo-img { width: 60px; height: 60px; }
-  .banner-img { max-height: 150px; }
-  section { padding: 15px 6px; }
-  nav a { margin: 0 8px; font-size: 0.95rem; }
-  .circle-container { width: 200px; height: 200px; }
-  .circle-item { width: 44px; height: 44px; font-size: 0.83rem; }
-}
 
+/* --- Notes List Section Styles --- */
 #notes-list {
   background: #f6f9fc;
   border-radius: 12px;
@@ -292,33 +285,27 @@ footer {
   padding: 30px 24px;
   margin: 30px 0;
 }
-
 #notes-list h2 {
   color: #003366;
   margin-top: 0;
 }
-
 #notes-list ul {
   padding-left: 24px;
   margin: 20px 0;
 }
-
 #notes-list li {
   margin-bottom: 16px;
   font-size: 1.08em;
   list-style: disc;
 }
-
 #notes-list a {
   color: #1976d2;
   text-decoration: underline;
   transition: color 0.2s;
 }
-
 #notes-list a:hover {
   color: #ffb300;
 }
-
 #notes-list button {
   background: #003366;
   color: #fff;
@@ -330,8 +317,16 @@ footer {
   cursor: pointer;
   transition: background 0.2s;
 }
-
 #notes-list button:hover {
   background: #ffb300;
   color: #003366;
+}
+
+@media (max-width: 800px) {
+  .logo-img { width: 60px; height: 60px; }
+  .banner-img { max-height: 150px; }
+  section { padding: 15px 6px; }
+  nav a { margin: 0 8px; font-size: 0.95rem; }
+  .circle-container { width: 200px; height: 200px; }
+  .circle-item { width: 44px; height: 44px; font-size: 0.83rem; }
 }
