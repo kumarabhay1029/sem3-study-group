@@ -86,16 +86,32 @@ nav a:focus {
   border: 1.5px solid #7ecbff;
 }
 
-/* Section Headings */
+/* Section Headings - FIXED and ENHANCED */
 section h2 {
+  position: relative;
   font-size: 1.38rem;
   margin-top: 32px;
   margin-bottom: 12px;
-  border-left: 4px solid #2196f3;
-  padding-left: 12px;
+  color: #134d8a;
+  padding-left: 19px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  background: none;
+  border: none;
+  display: block;
+  z-index: 1;
+}
+section h2::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
   background: #e3f2fd;
-  display: inline-block;
-  box-shadow: 0 1px 14px #00eaff11;
+  border-left: 4px solid #2196f3;
+  border-radius: 6px 0 0 6px;
+  z-index: -1;
 }
 
 /* About, Roles, etc. */
