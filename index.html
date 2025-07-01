@@ -5,180 +5,280 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>IGNOU BCA Semester 3 | Student Group Initiative</title>
   <link rel="stylesheet" href="css-demo.css">
+  <link rel="icon" href="Logo.png" type="image/png">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#2196f3">
+  <meta name="description" content="IGNOU BCA Semester 3 student-led group focused on programming, logic building, study materials, and collaborative learning.">
+  <meta property="og:title" content="IGNOU BCA Semester 3 | Student Group Initiative" />
+  <meta property="og:description" content="Join a serious student-led learning group. Focused on C, C++, Python, DBMS, OS, and real teamwork." />
+  <meta property="og:image" content="assets/banner_sem3.png" />
+  <!-- Prism.js for code syntax highlighting -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-c.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cpp.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+  <!-- Confetti celebration library -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
 <body>
   <header>
-    <img src="Logo.png" alt="Group Logo" class="Logo-img">
+    <img src="Logo.png" alt="Group Logo" class="logo-img">
     <h1>IGNOU BCA Semester 3 Student Group Initiative</h1>
     <p class="subtitle">Learn. Lead. Grow Together.</p>
+    <button id="darkModeToggle" title="Toggle dark mode">🌙</button>
   </header>
+
+  <!-- Dashboard Widgets -->
+  <section class="dashboard glass-card">
+    <div class="dashboard-widget">
+      <span class="widget-title">👥 Members</span>
+      <span id="widget-members">54</span>
+    </div>
+    <div class="dashboard-widget">
+      <span class="widget-title">📚 Notes</span>
+      <span id="widget-notes">28</span>
+    </div>
+    <div class="dashboard-widget">
+      <span class="widget-title">🏆 Badges</span>
+      <span id="widget-badges">3</span>
+    </div>
+    <div class="dashboard-widget">
+      <span class="widget-title">🟢 Active Now</span>
+      <span id="widget-active">6</span>
+    </div>
+  </section>
+
+  <!-- Sticky Nav -->
+  <nav class="sticky-nav" role="navigation" aria-label="Main Navigation">
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#plan">Study Plan</a></li>
+      <li><a href="#join-form">Join</a></li>
+      <li><a href="#notes-list">Notes</a></li>
+      <li><a href="#contributor">Contributors</a></li>
+      <li><a href="#policies">Rules</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#feedback">Feedback</a></li>
+      <li><a href="#progress-tracker">Progress</a></li>
+      <li><a href="#activity-feed">Activity</a></li>
+    </ul>
+  </nav>
 
   <!-- Techy Neon Scroller -->
   <div class="techy-scroller">
-    <div class="scroll-text">
-      🚀 Welcome to IGNOU BCA Semester 3 Group! | 📅 Weekly study plan posted every Monday. | 📝 Upload and access class notes below. | 💡 Stay active and keep learning!
+    <div class="scroll-text" id="announcements">
+      🚀 Welcome to IGNOU BCA Semester 3 Group! | 📅 Weekly study plan posted every Monday. | 📝 Upload and access class notes below. | 💡 Stay active and keep learning! | 🏆 Most active contributor this week: <span id="top-contributor">Abhay Kumar</span>
     </div>
   </div>
 
   <section>
-    <img src="assets/banner_sem3.png" alt="Semester 3 Banner" class="banner-img" />
+    <img src="assets/banner_sem3.png" alt="Semester 3 Banner" class="banner-img parallax" />
   </section>
 
-  <section>
-    <h2>About the Group</h2>
-    <p>
-      This is a student-led initiative built for full-time, serious learners in Semester 3 of IGNOU BCA (New). We focus on collaborative learning, logic building, and practical programming in C, C++, Python, DBMS, and OS.
-    </p>
-  </section>
-
-  <section>
-    <h2>Admin Team Roles</h2>
-    <ul>
-      <li><strong>Lead Admin:</strong> Manages group structure, strategy, and discipline.</li>
-      <li><strong>Content Admin:</strong> Shares weekly study material and resources.</li>
-      <li><strong>Engagement Admin:</strong> Welcomes members and boosts group participation.</li>
-    </ul>
-    <p class="note">
-      Admins ensure a friendly, inclusive, and focused environment for all members.
-    </p>
-  </section>
-
-  <section>
-    <h2>Weekly Study Plan</h2>
-    <ul>
-      <li><strong>Monday:</strong> Concept Day – Learn/Share one key topic</li>
-      <li><strong>Tuesday:</strong> Logic Questions (C/C++)</li>
-      <li><strong>Wednesday:</strong> Programming Practice</li>
-      <li><strong>Thursday:</strong> Assignment Help & Collaboration</li>
-      <li><strong>Friday:</strong> Voice Doubt Session</li>
-      <li><strong>Saturday:</strong> Mini Project or Group Challenge</li>
-      <li><strong>Sunday:</strong> Weekly Recap & Motivation</li>
-    </ul>
-    <p class="note">
-      Consistent participation improves learning outcomes. All days are optional but strongly encouraged!
-    </p>
-  </section>
-
-  <section id="join-form">
-    <h2>Join Our Student Group</h2>
-    <p>
-      Please fill out the following form to officially join the <strong>Semester 3 IGNOU Student-led Group</strong>.
-    </p>
-    <iframe 
-      src="https://docs.google.com/forms/d/e/1FAIpQLSeEbGZlALuNxoOdUq6VpRK2pS5mi2znI-DbgNgiQ20aUumH_Q/viewform?embedded=true" 
-      width="100%" 
-      height="800" 
-      frameborder="0" 
-      marginheight="0" 
-      marginwidth="0"
-      title="IGNOU BCA Sem 3 Group Registration">
-      Loading…
-    </iframe>
-  </section>
-
-  <section>
-    <h2>Contributor Recognition</h2>
-    <table>
-      <tr>
-        <th>Contributor Name</th>
-        <th>Role</th>
-        <th>Badge</th>
-      </tr>
-      <tr>
-        <td>Abhay Kumar</td>
-        <td>Founder & Lead Admin</td>
-        <td><img src="https://img.shields.io/badge/Contributor-Active%20Member-orange?style=for-the-badge&logo=github" alt="Badge"></td>
-      </tr>
-      <tr>
-        <td>Rishabh Arora</td>
-        <td>Co-Admin (Manager)</td>
-        <td><img src="https://img.shields.io/badge/Contributor-Group%20Supporter-blue?style=for-the-badge&logo=github" alt="Badge"></td>
-      </tr>
-      <tr>
-        <td>Anjali Sharma</td>
-        <td>Content Contributor</td>
-        <td><img src="https://img.shields.io/badge/Contributor-Study%20Partner-green?style=for-the-badge&logo=github" alt="Badge"></td>
-      </tr>
-      <tr>
-        <td><em>You?</em></td>
-        <td>Become one today</td>
-        <td><img src="https://img.shields.io/badge/Join%20Now-Contribute%20Today-yellow?style=for-the-badge&logo=github" alt="Badge"></td>
-      </tr>
-    </table>
-  </section>
-
-  <section>
-    <h2>Group Policies</h2>
-    <ul>
-      <li>Respect everyone and keep the space distraction-free</li>
-      <li>Only study-related discussions allowed</li>
-      <li>No AI-generated answers for assignments</li>
-      <li>Stay active and contribute to learning</li>
-    </ul>
-    <p class="note">
-      Policies ensure a fair, focused, and helpful environment for all.
-    </p>
-  </section>
-
-  <section>
-    <h2>What You'll Learn</h2>
-    <p>By participating in this group, you'll build:</p>
-    <ul>
-      <li>Strong technical understanding (C, C++, Python, DBMS, OS)</li>
-      <li>Soft skills like leadership, collaboration, and communication</li>
-      <li>Discipline to study consistently with a team</li>
-      <li>Experience managing and engaging in a learning community</li>
-    </ul>
-  </section>
-
-  <section>
-    <h2>Admin Badges</h2>
-    <div class="badges">
-      <div class="badge">
-        <img src="assets/lead_admin_badge.png" alt="Lead Admin Badge">
-        <p><strong>Lead Admin</strong></p>
+  <main role="main">
+    <section id="about" class="glass-card">
+      <h2>📘 About the Group</h2>
+      <p>
+        This student-led initiative is built for full-time, serious learners in Semester 3 of IGNOU BCA (New). We focus on collaborative learning, logic building, and practical programming in C, C++, Python, DBMS, and OS.
+      </p>
+      <div class="callout info">
+        <strong>Tip:</strong> Stay active in discussions and ask questions. Participation helps everyone learn!
       </div>
-      <div class="badge">
-        <img src="assets/content_admin_badge.png" alt="Content Admin Badge">
-        <p><strong>Content Admin</strong></p>
-      </div>
-      <div class="badge">
-        <img src="assets/engagement_admin_badge.png" alt="Engagement Admin Badge">
-        <p><strong>Engagement Admin</strong></p>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="notes-list">
-    <h2>Shared Class Notes</h2>
-    <ul id="notes-ul">
-      <!-- Notes will appear here automatically -->
-    </ul>
-    <p>
-      <a href="https://forms.gle/6ANP6p7xSeMZpKKA7" target="_blank">
-        <button>Upload Your Notes</button>
-      </a>
-    </p>
-    <p class="note">
-      All notes are free to access. Please upload only original class notes, not copyrighted material.<br>
-      <strong>How it works:</strong> Every submission is reviewed. Only approved notes are published for students.
-    </p>
-  </section>
+    <section class="glass-card">
+      <h2>👥 Admin Team Roles</h2>
+      <ul>
+        <li><strong>Lead Admin:</strong> Manages group structure, strategy, and discipline.</li>
+        <li><strong>Content Admin:</strong> Shares weekly study material and resources.</li>
+        <li><strong>Engagement Admin:</strong> Welcomes members and boosts group participation.</li>
+      </ul>
+      <p class="note">
+        Admins ensure a friendly, inclusive, and focused environment for all members.
+      </p>
+    </section>
+
+    <section id="plan" class="glass-card">
+      <h2>📅 Weekly Study Plan</h2>
+      <ul>
+        <li><strong>Monday:</strong> Concept Day – Learn/Share one key topic</li>
+        <li><strong>Tuesday:</strong> Logic Questions (C/C++)</li>
+        <li><strong>Wednesday:</strong> Programming Practice</li>
+        <li><strong>Thursday:</strong> Assignment Help & Collaboration</li>
+        <li><strong>Friday:</strong> Voice Doubt Session</li>
+        <li><strong>Saturday:</strong> Mini Project or Group Challenge</li>
+        <li><strong>Sunday:</strong> Weekly Recap & Motivation</li>
+      </ul>
+      <div class="callout syllabus">
+        <strong>Syllabus focus:</strong> We cover all topics from the IGNOU BCA Semester 3 syllabus, using real-world examples and peer support.
+      </div>
+    </section>
+
+    <section id="join-form" class="glass-card">
+      <h2>📝 Join Our Student Group</h2>
+      <p>
+        Please fill out the form to officially join the <strong>Semester 3 IGNOU Student-led Group</strong>.
+      </p>
+      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeEbGZlALuNxoOdUq6VpRK2pS5mi2znI-DbgNgiQ20aUumH_Q/viewform?embedded=true" width="100%" height="800" frameborder="0" marginheight="0" marginwidth="0" title="IGNOU BCA Sem 3 Group Registration">Loading…</iframe>
+    </section>
+
+    <section id="contributor" class="glass-card">
+      <h2>🏅 Contributor Recognition & Leaderboard</h2>
+      <table>
+        <tr>
+          <th>Contributor Name</th>
+          <th>Role</th>
+          <th>Badge</th>
+          <th>Contributions</th>
+        </tr>
+        <tr>
+          <td>Abhay Kumar</td>
+          <td>Founder & Lead Admin</td>
+          <td><img src="https://img.shields.io/badge/Contributor-Active%20Member-orange?style=for-the-badge&logo=github" alt="Badge"></td>
+          <td>15</td>
+        </tr>
+        <tr>
+          <td>Rishabh Arora</td>
+          <td>Co-Admin (Manager)</td>
+          <td><img src="https://img.shields.io/badge/Contributor-Group%20Supporter-blue?style=for-the-badge&logo=github" alt="Badge"></td>
+          <td>9</td>
+        </tr>
+        <tr>
+          <td>Anjali Sharma</td>
+          <td>Content Contributor</td>
+          <td><img src="https://img.shields.io/badge/Contributor-Study%20Partner-green?style=for-the-badge&logo=github" alt="Badge"></td>
+          <td>7</td>
+        </tr>
+        <tr>
+          <td><em>You?</em></td>
+          <td>Become one today</td>
+          <td><img src="https://img.shields.io/badge/Join%20Now-Contribute%20Today-yellow?style=for-the-badge&logo=github" alt="Badge"></td>
+          <td>?</td>
+        </tr>
+      </table>
+      <div class="callout tip">
+        <strong>Earn badges:</strong> Contribute notes, help peers, or organize sessions to get recognized!
+      </div>
+    </section>
+
+    <section id="policies" class="glass-card">
+      <h2>📌 Group Policies</h2>
+      <ul>
+        <li>Respect everyone and keep the space distraction-free</li>
+        <li>Only study-related discussions allowed</li>
+        <li>No AI-generated answers for assignments</li>
+        <li>No off-topic messages. Immediate removal if violated.</li>
+        <li>Stay active and contribute to learning</li>
+      </ul>
+      <div class="callout warning">
+        <strong>Warning:</strong> Violating group rules will result in a warning or removal.
+      </div>
+    </section>
+
+    <section id="skills" class="glass-card">
+      <h2>🎯 What You'll Learn</h2>
+      <ul>
+        <li>Strong technical understanding (C, C++, Python, DBMS, OS)</li>
+        <li>Soft skills like leadership, collaboration, and communication</li>
+        <li>Discipline to study consistently with a team</li>
+        <li>Experience managing and engaging in a learning community</li>
+      </ul>
+      <div class="callout success">
+        <strong>Learning Outcome:</strong> You will gain both IT and teamwork skills for real-life success.
+      </div>
+    </section>
+
+    <section id="notes-list" class="glass-card">
+      <h2>📚 Shared Class Notes</h2>
+      <input type="text" id="notes-search" placeholder="Search notes by topic or course..." aria-label="Search notes" style="margin-bottom:12px;">
+      <ul id="notes-ul">
+        <!-- Notes will appear here automatically -->
+      </ul>
+      <p>
+        <a href="https://forms.gle/6ANP6p7xSeMZpKKA7" target="_blank">
+          <button>Upload Your Notes</button>
+        </a>
+      </p>
+      <div class="callout syllabus">
+        <strong>How it works:</strong> Only approved notes are listed. <span class="new-badge">New</span> notes are highlighted!
+      </div>
+      <div class="callout info" style="margin-top:18px;">
+        <strong>Code Example:</strong><br>
+        <pre><code class="language-cpp">#include &lt;iostream&gt;
+using namespace std;
+int main() {
+  cout &lt;&lt; "Hello IGNOU BCA 3!" &lt;&lt; endl;
+  return 0;
+}</code></pre>
+      </div>
+    </section>
+
+    <section id="progress-tracker" class="glass-card">
+      <h2>📈 Syllabus Progress Tracker</h2>
+      <ul>
+        <li><label><input type="checkbox" class="syllabus-check"> C Programming – Pointers</label></li>
+        <li><label><input type="checkbox" class="syllabus-check"> DBMS – Normalization</label></li>
+        <li><label><input type="checkbox" class="syllabus-check"> OS – Memory Management</label></li>
+        <li><label><input type="checkbox" class="syllabus-check"> Python – File Handling</label></li>
+      </ul>
+      <p id="progress-status"></p>
+    </section>
+
+    <section id="activity-feed" class="glass-card">
+      <h2>📰 Group Activity Feed</h2>
+      <ul id="activity-list">
+        <li>Rishabh uploaded <b>DBMS ER Diagrams</b> notes.</li>
+        <li>Anjali earned <b>Content Admin</b> badge.</li>
+        <li>Abhay started a new group challenge.</li>
+      </ul>
+    </section>
+
+    <section id="feedback" class="glass-card">
+      <h2>💬 Feedback & Participation</h2>
+      <form id="feedback-form" autocomplete="off">
+        <label for="feedback-input">Give feedback, thank a contributor, or suggest improvements:</label><br>
+        <textarea id="feedback-input" rows="2" required style="width:100%;max-width:650px;"></textarea><br>
+        <button type="submit">Send Feedback</button>
+      </form>
+      <ul id="feedback-list" class="feedback-list">
+        <!-- Feedback will appear here, demo purpose -->
+      </ul>
+    </section>
+  </main>
 
   <footer>
     &copy; 2025 IGNOU BCA Student Initiative | Designed by Students for Students
+    <br>
+    <a href="#top" style="color:#fff;text-decoration:underline;font-size:0.95em;">Back to Top ↑</a>
   </footer>
 
-  <script>
-    // Use your published CSV link from Google Sheets here!
-    const SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTG7r3mJfbzhwUS2wdsOLfUcAntXzKWsVDplSvSWKP2S-awbtoIDPXnQbz64zXH3sh0dHj7vDd92jPe/pub?output=csv';
+  <!-- Floating Join Button -->
+  <a href="#join-form" class="fab-button" title="Join Now" aria-label="Join Now">➕</a>
 
-    // Robust CSV parser for simple classroom use
+  <!-- Parallax effect -->
+  <script>
+    document.querySelectorAll('.parallax').forEach(function(el) {
+      window.addEventListener('scroll', function() {
+        var scroll = window.scrollY;
+        el.style.transform = 'translateY(' + scroll/8 + 'px) scale(1.03)';
+      });
+    });
+  </script>
+  <script>
+    // Dark mode toggle
+    document.getElementById('darkModeToggle').onclick = function() {
+      document.body.classList.toggle('dark-mode');
+      this.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+    };
+
+    // Notes Section: CSV Fetch + Filter + New Badge
+    const SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTG7r3mJfbzhwUS2wdsOLfUcAntXzKWsVDplSvSWKP2S-awbtoIDPXnQbz64zXH3sh0dHj7vDd92jPe/pub?output=csv';
+    let allNotes = [];
     function parseCSV(text) {
       const lines = text.split('\n').filter(l => l.trim());
       const headers = lines[0].split(',').map(h => h.trim());
       return lines.slice(1).map(line => {
-        // Handles quoted commas
         let regex = /(".*?"|[^",\s]+)(?=\s*,|\s*$)/g;
         let values = [];
         let match;
@@ -188,33 +288,88 @@
         return obj;
       });
     }
-
+    function showNotes(filter = "") {
+      const ul = document.getElementById('notes-ul');
+      let notes = allNotes;
+      if (filter) {
+        const f = filter.toLowerCase();
+        notes = notes.filter(n =>
+          (n["Course Code"] && n["Course Code"].toLowerCase().includes(f)) ||
+          (n["Topic"] && n["Topic"].toLowerCase().includes(f))
+        );
+      }
+      if (!ul) return;
+      if (!notes.length) {
+        ul.innerHTML = '<li>No notes found.</li>';
+        return;
+      }
+      ul.innerHTML = notes.map(note => {
+        const course = note["Course Code"] || '';
+        const topic = note["Topic"] || '';
+        const name = note["Name"] || '';
+        const link = note["Upload Notes"] || '#';
+        const approved = note["Approved"] && note["Approved"].toLowerCase() === 'yes';
+        const uploaded = note["Timestamp"] ? new Date(note["Timestamp"]) : null;
+        let isNew = false;
+        if (uploaded) {
+          const now = new Date();
+          const diffDays = (now - uploaded) / (1000 * 60 * 60 * 24);
+          isNew = diffDays <= 7;
+        }
+        if (!link || link === '#' || !approved) return '';
+        return `<li>
+          <a href="${link}" target="_blank">${course}${course && topic ? ' - ' : ''}${topic}${(course || topic) ? ' by ' : ''}${name}</a>
+          ${isNew ? '<span class="new-badge">New</span>' : ''}
+        </li>`;
+      }).join('') || '<li>No notes found.</li>';
+      Prism.highlightAll();
+    }
     fetch(SHEET_CSV_URL)
       .then(r => r.text())
       .then(csv => {
-        const notes = parseCSV(csv);
-        // Only show approved notes (case-insensitive)
-        const approvedNotes = notes.filter(n => n['Approved'] && n['Approved'].toLowerCase() === 'yes');
-        const ul = document.getElementById('notes-ul');
-        if (!ul) return;
-        if (approvedNotes.length === 0) {
-          ul.innerHTML = '<li>No notes available yet.</li>';
-          return;
-        }
-        ul.innerHTML = approvedNotes.map(note => {
-          // Use your classroom-friendly column names:
-          const course = note["Course Code"] || '';
-          const topic = note["Topic"] || '';
-          const name = note["Name"] || '';
-          const link = note["Upload Notes"] || '#';
-          if (!link || link === '#') return '';
-          return `<li><a href="${link}" target="_blank">${course ? course : ''}${course && topic ? ' covered ' : ''}${topic ? topic : ''}${(course || topic) ? ' - by ' : ''}${name}</a></li>`;
-        }).join('') || '<li>No notes available yet.</li>';
+        allNotes = parseCSV(csv).filter(n => n['Approved'] && n['Approved'].toLowerCase() === 'yes');
+        showNotes();
       })
-      .catch(e => {
-        const ul = document.getElementById('notes-ul');
-        if (ul) ul.innerHTML = '<li>Could not load notes.</li>';
+      .catch(() => {
+        document.getElementById('notes-ul').innerHTML = '<li>Could not load notes.</li>';
       });
+    document.getElementById('notes-search').addEventListener('input', e => {
+      showNotes(e.target.value);
+    });
+
+    // Progress Tracker
+    const tracker = document.querySelectorAll('#progress-tracker input[type=checkbox]');
+    const status = document.getElementById('progress-status');
+    function updateProgress() {
+      let done = Array.from(tracker).filter(c => c.checked).length;
+      status.textContent = `Completed: ${done} / ${tracker.length}`;
+      if (done === tracker.length) {
+        confetti({particleCount: 100, spread: 80});
+      }
+    }
+    tracker.forEach(box => box.onchange = updateProgress);
+    updateProgress();
+
+    // Feedback Section (Simple Demo Storage)
+    const feedbackForm = document.getElementById('feedback-form');
+    const feedbackList = document.getElementById('feedback-list');
+    feedbackForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const val = document.getElementById('feedback-input').value;
+      if (val.trim().length > 0) {
+        const li = document.createElement('li');
+        li.textContent = val;
+        feedbackList.prepend(li);
+        document.getElementById('feedback-input').value = '';
+        confetti({particleCount: 60, spread: 70});
+      }
+    });
+  </script>
+  <!-- PWA support -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js');
+    }
   </script>
 </body>
 </html>
