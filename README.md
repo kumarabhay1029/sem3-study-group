@@ -1,5 +1,7 @@
 # 🎓 IGNOU BCA Semester 3 – Student Group Initiative
 
+![Semester 3 Study Group Banner](assets/banner_sem3.png)
+
 ![Status](https://img.shields.io/badge/Status-Active%20Group-brightgreen?style=for-the-badge&logo=github)
 ![Semester](https://img.shields.io/badge/Semester-3-blue?style=for-the-badge)
 ![Mode](https://img.shields.io/badge/Mode-Full%20Time%20Learning-blueviolet?style=for-the-badge)
