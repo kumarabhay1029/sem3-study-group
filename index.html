@@ -240,11 +240,12 @@
     // Use your published CSV link from Google Sheets here!
     const SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTG7r3mJfbzhwUS2wdsOLfUcAntXzKWsVDplSvSWKP2S-awbtoIDPXnQbz64zXH3sh0dHj7vDd92jPe/pub?output=csv';
 
-    // Improved CSV parser to handle commas/quotes
+    // Robust CSV parser for simple classroom use
     function parseCSV(text) {
       const lines = text.split('\n').filter(l => l.trim());
       const headers = lines[0].split(',').map(h => h.trim());
       return lines.slice(1).map(line => {
+        // Handles quoted commas
         let regex = /(".*?"|[^",\s]+)(?=\s*,|\s*$)/g;
         let values = [];
         let match;
@@ -259,7 +260,7 @@
       .then(r => r.text())
       .then(csv => {
         const notes = parseCSV(csv);
-        // Only show approved notes
+        // Only show approved notes (case-insensitive)
         const approvedNotes = notes.filter(n => n['Approved'] && n['Approved'].toLowerCase() === 'yes');
         const ul = document.getElementById('notes-ul');
         if (!ul) return;
@@ -268,13 +269,16 @@
           return;
         }
         ul.innerHTML = approvedNotes.map(note => {
-          // Use your actual column names:
-          const course = note["Course Code (Short answer or Dropdown, e.g ...)"] || '';
-          const topic = note["Topic/Title (Short answer. Students should w ...)"] || '';
-          const name = note["Name (Short answer)"] || '';
-          const link = note["Upload Notes (File upload; allow PDF, DOCX, i ...)"] || '#';
-          return `<li><a href="${link}" target="_blank">${course} covered ${topic} - by ${name}</a></li>`;
-        }).join('');
+          // Use your classroom-friendly column names:
+          const course = note["Course Code"] || '';
+          const topic = note["Topic"] || '';
+          const name = note["Name"] || '';
+          const link = note["Upload Notes"] || '#';
+          // Only show if there's a link and at least a topic or course
+          if (!link || link === '#') return '';
+          // Teaching-based: show course covered topic - by name
+          return `<li><a href="${link}" target="_blank">${course ? course : ''}${course && topic ? ' covered ' : ''}${topic ? topic : ''}${(course || topic) ? ' - by ' : ''}${name}</a></li>`;
+        }).join('') || '<li>No notes available yet.</li>';
       })
       .catch(e => {
         const ul = document.getElementById('notes-ul');
