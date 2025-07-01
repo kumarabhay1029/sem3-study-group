@@ -1,5 +1,9 @@
 # 🎓 IGNOU BCA Semester 3 – Student Group Initiative
 
+![Status](https://img.shields.io/badge/Status-Active%20Group-brightgreen?style=for-the-badge&logo=github)
+![Semester](https://img.shields.io/badge/Semester-3-blue?style=for-the-badge)
+![Mode](https://img.shields.io/badge/Mode-Full%20Time%20Learning-blueviolet?style=for-the-badge)
+
 Welcome to the official repository for our **Semester 3 Study Group**. This is a **student-led initiative** designed to build a focused, distraction-free environment for full-time learners pursuing the **IGNOU BCA (New)** program.
 
 ---
