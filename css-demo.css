@@ -22,16 +22,7 @@ header h1 {
   font-size: 2.1rem;
   font-weight: 700;
   letter-spacing: 0.4px;
-  background: linear-gradient(90deg, #00eaff 0%, #2196f3 60%, #8fd3f4 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  text-fill-color: transparent;
-}
-
-header p {
-  margin: 0 0 4px 0;
-  font-size: 1.13rem;
+  color: #fff; /* Always has a fallback! */
 }
 
 /* Section */
@@ -51,7 +42,7 @@ section h2 {
   font-size: 1.32rem;
   margin-top: 0;
   margin-bottom: 18px;
-  color: #134d8a;
+  color: #134d8a; /* Always visible fallback */
   padding-left: 18px;
   padding-top: 8px;
   padding-bottom: 8px;
@@ -74,6 +65,18 @@ section h2::before {
   border-left: 4px solid #2196f3;
   border-radius: 7px 0 0 7px;
   z-index: -1;
+}
+
+/* Gradient effect only where supported */
+@supports (-webkit-background-clip: text) {
+  header h1, section h2 {
+    background: linear-gradient(90deg, #00eaff 0%, #2196f3 60%, #8fd3f4 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+    /* fallback stays due to color above! */
+  }
 }
 
 /* Banner image */
