@@ -210,7 +210,8 @@
       <p style="font-size:0.97em; color:#555; margin-top:18px;">Use the circular scroller above to explore tech topics interactively! You can customize or extend this for syllabus coverage, contributors, or project highlights.</p>
     </section>
 
-        <section id="notes-list">
+    <!-- Only ONE notes-list section! -->
+    <section id="notes-list">
       <h2>📝 Shared Class Notes</h2>
       <ul id="notes-ul">
         <!-- Notes will appear here automatically -->
@@ -234,31 +235,51 @@
     </div>
   </footer>
   
-  ...
-  <!-- All your other content -->
-  <section id="notes-list">
-    <h2>📝 Shared Class Notes</h2>
-    <ul id="notes-ul">
-      <!-- Notes will appear here automatically -->
-    </ul>
-    <p>
-      <a href="https://forms.gle/6ANP6p7xSeMZpKKA7" target="_blank">
-        <button>Upload Your Notes</button>
-      </a>
-    </p>
-    <p style="font-size:0.95em;color:#555;">
-      All notes are free to access...
-    </p>
-  </section>
-  ...
-  <footer>
-    ...
-  </footer>
-
-  <!-- Paste YOUR SCRIPT HERE, right before </body> -->
+  <!-- Place THIS script just before </body> -->
   <script>
-    // ... (code above)
-  </script>
+    // Use your published CSV link from Google Sheets here!
+    const SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTG7r3mJfbzhwUS2wdsOLfUcAntXzKWsVDplSvSWKP2S-awbtoIDPXnQbz64zXH3sh0dHj7vDd92jPe/pub?output=csv';
 
+    // Improved CSV parser to handle commas/quotes
+    function parseCSV(text) {
+      const lines = text.split('\n').filter(l => l.trim());
+      const headers = lines[0].split(',').map(h => h.trim());
+      return lines.slice(1).map(line => {
+        let regex = /(".*?"|[^",\s]+)(?=\s*,|\s*$)/g;
+        let values = [];
+        let match;
+        while (match = regex.exec(line)) values.push(match[1].replace(/^"|"$/g, ''));
+        const obj = {};
+        headers.forEach((h, i) => obj[h] = (values[i] || '').trim());
+        return obj;
+      });
+    }
+
+    fetch(SHEET_CSV_URL)
+      .then(r => r.text())
+      .then(csv => {
+        const notes = parseCSV(csv);
+        // Only show approved notes
+        const approvedNotes = notes.filter(n => n['Approved'] && n['Approved'].toLowerCase() === 'yes');
+        const ul = document.getElementById('notes-ul');
+        if (!ul) return;
+        if (approvedNotes.length === 0) {
+          ul.innerHTML = '<li>No notes available yet.</li>';
+          return;
+        }
+        ul.innerHTML = approvedNotes.map(note => {
+          // Use your actual column names:
+          const course = note["Course Code (Short answer or Dropdown, e.g ...)"] || '';
+          const topic = note["Topic/Title (Short answer. Students should w ...)"] || '';
+          const name = note["Name (Short answer)"] || '';
+          const link = note["Upload Notes (File upload; allow PDF, DOCX, i ...)"] || '#';
+          return `<li><a href="${link}" target="_blank">${course} covered ${topic} - by ${name}</a></li>`;
+        }).join('');
+      })
+      .catch(e => {
+        const ul = document.getElementById('notes-ul');
+        if (ul) ul.innerHTML = '<li>Could not load notes.</li>';
+      });
+  </script>
 </body>
 </html>
