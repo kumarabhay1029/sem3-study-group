@@ -212,6 +212,75 @@
       margin-right: 8px;
       color: #ffb300;
     }
+    /* Circular Scroller Styles */
+    .circle-container {
+      position: relative;
+      width: 350px;
+      height: 350px;
+      margin: 0 auto 32px auto;
+      border-radius: 50%;
+      perspective: 1000px;
+      background: rgba(0,51,102,0.03);
+      box-shadow: 0 0 32px #0ff1ce33;
+      overflow: visible;
+    }
+    .circle {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      left: 0; top: 0;
+      transform-style: preserve-3d;
+      transition: transform 1s cubic-bezier(.17,.67,.31,.98);
+    }
+    .circle-item {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(120deg,#0ff1ce 50%,#00b4ff 100%);
+      color: #181f2b;
+      border-radius: 50%;
+      position: absolute;
+      left: 50%; top: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      font-weight: bold;
+      box-shadow: 0 0 12px #0ff1ceaa;
+      cursor: pointer;
+      user-select: none;
+      border: 3px solid #fff;
+      transition: box-shadow 0.3s, transform 0.3s;
+    }
+    .circle-item.active {
+      box-shadow: 0 0 32px #54ffad, 0 0 12px #0ff1ce;
+      border: 3px solid #54ffad;
+      transform: translate(-50%, -50%) scale(1.18);
+      z-index: 2;
+    }
+    .controls {
+      display: flex;
+      justify-content: center;
+      gap: 26px;
+      margin-bottom: 24px;
+    }
+    .control-btn {
+      background: #0ff1ce;
+      color: #181f2b;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 34px;
+      font-size: 1.1rem;
+      font-family: 'Roboto', Arial, sans-serif;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 0 12px #0ff1ce77;
+      transition: background 0.2s, color 0.2s;
+    }
+    .control-btn:hover {
+      background: #00b4ff;
+      color: #fff;
+    }
     @media (max-width: 700px) {
       header h1 {
         font-size: 1.3rem;
@@ -222,6 +291,15 @@
       }
       section {
         padding: 18px 8px;
+      }
+      .circle-container {
+        width: 220px;
+        height: 220px;
+      }
+      .circle-item {
+        width: 48px;
+        height: 48px;
+        font-size: 0.8rem;
       }
     }
     footer {
@@ -264,6 +342,7 @@
     <a href="#policies">Policies</a>
     <a href="#learning">Learning</a>
     <a href="#badges">Admin Badges</a>
+    <a href="#circular-scroller">Circular Scroller</a>
   </nav>
   <main>
     <section>
@@ -390,6 +469,65 @@
         </div>
       </div>
       <p style="margin-top:15px; color:#607d8b; font-size:0.98em;">Want to earn a badge? Step up, contribute regularly, and help your peers!</p>
+    </section>
+    <section id="circular-scroller">
+      <h2>🔄 Circular Scroller Example</h2>
+      <div class="circle-container">
+        <div class="circle" id="circle">
+          <div class="circle-item active">HTML</div>
+          <div class="circle-item">CSS</div>
+          <div class="circle-item">JavaScript</div>
+          <div class="circle-item">Python</div>
+          <div class="circle-item">C++</div>
+          <div class="circle-item">Java</div>
+          <div class="circle-item">SQL</div>
+          <div class="circle-item">PHP</div>
+        </div>
+      </div>
+      <div class="controls">
+        <button class="control-btn" onclick="rotateCircle(-1)">&#8592; Prev</button>
+        <button class="control-btn" onclick="rotateCircle(1)">Next &#8594;</button>
+      </div>
+      <script>
+        // Rotating items in a circle using trigonometry
+        const items = document.querySelectorAll('.circle-item');
+        const circle = document.getElementById('circle');
+        let current = 0;
+        const total = items.length;
+        const radius = 140;
+
+        function positionItems() {
+          items.forEach((item, i) => {
+            const angle = (2 * Math.PI * i) / total - Math.PI/2;
+            const x = radius * Math.cos(angle);
+            const y = radius * Math.sin(angle);
+            item.style.left = `calc(50% + ${x}px)`;
+            item.style.top = `calc(50% + ${y}px)`;
+            item.classList.toggle('active', i === current);
+          });
+        }
+
+        function rotateCircle(dir) {
+          current = (current + dir + total) % total;
+          circle.style.transform = `rotate(${-360 * current / total}deg)`;
+          items.forEach((item, i) => {
+            item.style.transform = `translate(-50%, -50%) rotate(${360 * current / total}deg)`;
+            item.classList.toggle('active', i === current);
+          });
+        }
+
+        // Initial positions and upright items
+        positionItems();
+        items.forEach((item) => {
+          item.style.transform = `translate(-50%, -50%)`;
+        });
+        items.forEach((item, i) => {
+          item.addEventListener('click', () => {
+            rotateCircle(i - current);
+          });
+        });
+      </script>
+      <p style="font-size:0.97em; color:#555; margin-top:18px;">Use the circular scroller above to explore tech topics interactively! You can customize or extend this for syllabus coverage, contributors, or project highlights.</p>
     </section>
   </main>
   <footer>
