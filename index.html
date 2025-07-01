@@ -8,35 +8,43 @@
 </head>
 <body>
   <header>
-    <h1>IGNOU BCA Semester 3<br>Student Group Initiative</h1>
-    <p>Learn. Lead. Grow Together.</p>
+    <img src="logo.png" alt="Group Logo" class="logo-img">
+    <h1>IGNOU BCA Semester 3 Student Group Initiative</h1>
+    <p class="subtitle">Learn. Lead. Grow Together.</p>
   </header>
+
+  <!-- Techy Neon Scroller -->
+  <div class="techy-scroller">
+    <div class="scroll-text">
+      🚀 Welcome to IGNOU BCA Semester 3 Group! | 📅 Weekly study plan posted every Monday. | 📝 Upload and access class notes below. | 💡 Stay active and keep learning!
+    </div>
+  </div>
 
   <section>
     <img src="assets/banner_sem3.png" alt="Semester 3 Banner" class="banner-img" />
   </section>
 
   <section>
-    <h2>📘 About the Group</h2>
+    <h2>About the Group</h2>
     <p>
       This is a student-led initiative built for full-time, serious learners in Semester 3 of IGNOU BCA (New). We focus on collaborative learning, logic building, and practical programming in C, C++, Python, DBMS, and OS.
     </p>
   </section>
 
   <section>
-    <h2>👥 Admin Team Roles</h2>
+    <h2>Admin Team Roles</h2>
     <ul>
       <li><strong>Lead Admin:</strong> Manages group structure, strategy, and discipline.</li>
       <li><strong>Content Admin:</strong> Shares weekly study material and resources.</li>
       <li><strong>Engagement Admin:</strong> Welcomes members and boosts group participation.</li>
     </ul>
-    <p style="font-size:0.98em; color:#415;">
+    <p class="note">
       Admins ensure a friendly, inclusive, and focused environment for all members.
     </p>
   </section>
 
   <section>
-    <h2>🗓️ Weekly Study Plan</h2>
+    <h2>Weekly Study Plan</h2>
     <ul>
       <li><strong>Monday:</strong> Concept Day – Learn/Share one key topic</li>
       <li><strong>Tuesday:</strong> Logic Questions (C/C++)</li>
@@ -46,13 +54,13 @@
       <li><strong>Saturday:</strong> Mini Project or Group Challenge</li>
       <li><strong>Sunday:</strong> Weekly Recap & Motivation</li>
     </ul>
-    <p style="font-size:0.98em; color:#415;">
+    <p class="note">
       Consistent participation improves learning outcomes. All days are optional but strongly encouraged!
     </p>
   </section>
 
   <section id="join-form">
-    <h2>📋 Join Our Student Group</h2>
+    <h2>Join Our Student Group</h2>
     <p>
       Please fill out the following form to officially join the <strong>Semester 3 IGNOU Student-led Group</strong>.
     </p>
@@ -69,10 +77,7 @@
   </section>
 
   <section>
-    <h2>🏅 Contributor Recognition</h2>
-    <p>
-      We proudly recognize the efforts of active members who contribute knowledge, notes, discussions, or support.
-    </p>
+    <h2>Contributor Recognition</h2>
     <table>
       <tr>
         <th>Contributor Name</th>
@@ -103,20 +108,20 @@
   </section>
 
   <section>
-    <h2>📌 Group Policies</h2>
+    <h2>Group Policies</h2>
     <ul>
       <li>Respect everyone and keep the space distraction-free</li>
       <li>Only study-related discussions allowed</li>
       <li>No AI-generated answers for assignments</li>
       <li>Stay active and contribute to learning</li>
     </ul>
-    <p style="font-size:0.94em; color:#888; margin:7px 0 0 0;">
+    <p class="note">
       Policies ensure a fair, focused, and helpful environment for all.
     </p>
   </section>
 
   <section>
-    <h2>🎓 What You'll Learn</h2>
+    <h2>What You'll Learn</h2>
     <p>By participating in this group, you'll build:</p>
     <ul>
       <li>Strong technical understanding (C, C++, Python, DBMS, OS)</li>
@@ -127,7 +132,7 @@
   </section>
 
   <section>
-    <h2>🏅 Admin Badges</h2>
+    <h2>Admin Badges</h2>
     <div class="badges">
       <div class="badge">
         <img src="assets/lead_admin_badge.png" alt="Lead Admin Badge">
@@ -145,7 +150,7 @@
   </section>
 
   <section id="notes-list">
-    <h2>📝 Shared Class Notes</h2>
+    <h2>Shared Class Notes</h2>
     <ul id="notes-ul">
       <!-- Notes will appear here automatically -->
     </ul>
@@ -154,7 +159,7 @@
         <button>Upload Your Notes</button>
       </a>
     </p>
-    <p style="font-size:0.95em;color:#555;">
+    <p class="note">
       All notes are free to access. Please upload only original class notes, not copyrighted material.<br>
       <strong>How it works:</strong> Every submission is reviewed. Only approved notes are published for students.
     </p>
@@ -202,9 +207,7 @@
           const topic = note["Topic"] || '';
           const name = note["Name"] || '';
           const link = note["Upload Notes"] || '#';
-          // Only show if there's a link and at least a topic or course
           if (!link || link === '#') return '';
-          // Teaching-based: show course covered topic - by name
           return `<li><a href="${link}" target="_blank">${course ? course : ''}${course && topic ? ' covered ' : ''}${topic ? topic : ''}${(course || topic) ? ' - by ' : ''}${name}</a></li>`;
         }).join('') || '<li>No notes available yet.</li>';
       })
