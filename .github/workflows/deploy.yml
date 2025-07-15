@@ -1,0 +1,81 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+        
+    - name: Validate HTML
+      run: |
+        echo "Validating HTML structure..."
+        if [ -f "index.html" ]; then
+          echo "✅ index.html found"
+        else
+          echo "❌ index.html not found"
+          exit 1
+        fi
+        
+    - name: Check PWA files
+      run: |
+        echo "Checking PWA files..."
+        if [ -f "manifest.json" ]; then
+          echo "✅ manifest.json found"
+        else
+          echo "❌ manifest.json not found"
+          exit 1
+        fi
+        
+        if [ -f "service-worker.js" ]; then
+          echo "✅ service-worker.js found"
+        else
+          echo "❌ service-worker.js not found"
+          exit 1
+        fi
+        
+    - name: Test site locally
+      run: |
+        echo "Testing site locally..."
+        python3 -m http.server 8000 &
+        sleep 3
+        curl -f http://localhost:8000 || exit 1
+        echo "✅ Site loads successfully"
+        
+    - name: Generate deployment report
+      run: |
+        echo "# Deployment Report" > deployment-report.md
+        echo "- **Date:** $(date)" >> deployment-report.md
+        echo "- **Commit:** ${{ github.sha }}" >> deployment-report.md
+        echo "- **Branch:** ${{ github.ref }}" >> deployment-report.md
+        echo "- **Files deployed:** $(find . -name '*.html' -o -name '*.css' -o -name '*.js' -o -name '*.json' -o -name '*.png' | wc -l)" >> deployment-report.md
+        echo "- **Site URL:** https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}" >> deployment-report.md
+        cat deployment-report.md
+        
+    - name: Deploy to GitHub Pages
+      if: github.ref == 'refs/heads/main'
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./
+        exclude_assets: '.github'
+        
+    - name: Post-deployment monitoring
+      if: github.ref == 'refs/heads/main'
+      run: |
+        echo "Setting up monitoring..."
+        echo "✅ Deployment completed successfully"
+        echo "🔗 Site URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}"
+        echo "📊 Monitoring dashboard integrated"

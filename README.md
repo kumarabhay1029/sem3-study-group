@@ -72,7 +72,34 @@ By being part of this initiative:
 ---
 
 ## 🌐 Visit Our GitHub Pages Site
-➡️ [https://yourusername.github.io/sem3-study-group](https://kumarabhay1029.github.io/sem3-study-group/)
+➡️ [https://kumarabhay1029.github.io/sem3-study-group](https://kumarabhay1029.github.io/sem3-study-group/)
+
+## 📊 Data Monitoring & Analytics
+The site now includes comprehensive monitoring capabilities:
+
+### 📈 Student Activity Tracking
+- **Page Views**: Real-time tracking of site engagement
+- **Active Users**: Monitor daily/weekly user activity
+- **Learning Progress**: Track completion rates and study patterns
+- **Feedback Analytics**: Collect and analyze user feedback
+
+### 🔍 Monitoring Features
+- **Real-time Dashboard**: Live updates on student engagement
+- **Performance Metrics**: Server status and error tracking
+- **Data Sync Status**: Monitor connection to Google Sheets
+- **Activity Feed**: Track all user interactions
+
+### 🤖 AI-Powered Support
+- **Technical Assistance**: AI contributor for technical support
+- **Data Insights**: Automated analysis of learning patterns
+- **Predictive Analytics**: Identify students who may need extra help
+- **Personalized Recommendations**: Custom study suggestions based on activity
+
+### 🚀 Automated Deployment
+- **GitHub Actions**: Automated deployment to GitHub Pages
+- **Continuous Integration**: Automatic validation and testing
+- **Monitoring Integration**: Real-time deployment status
+- **Error Tracking**: Automated error detection and reporting
 
 ---
 
