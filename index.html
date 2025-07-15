@@ -317,21 +317,72 @@ int main() {
           isNew = diffDays <= 7;
         }
         if (!link || link === '#' || !approved) return '';
+        
+        // Handle demo links
+        const isDemo = link.includes('example.com');
+        const linkClick = isDemo ? 'onclick="alert(\'This is a demo note. In the real app, this would open the actual note.\'); return false;"' : '';
+        
         return `<li>
-          <a href="${link}" target="_blank">${course}${course && topic ? ' - ' : ''}${topic}${(course || topic) ? ' by ' : ''}${name}</a>
+          <a href="${link}" target="_blank" ${linkClick}>${course}${course && topic ? ' - ' : ''}${topic}${(course || topic) ? ' by ' : ''}${name}</a>
           ${isNew ? '<span class="new-badge">New</span>' : ''}
+          ${isDemo ? '<span class="demo-badge" style="font-size: 0.8em; color: #666; margin-left: 8px;">(Demo)</span>' : ''}
         </li>`;
       }).join('') || '<li>No notes found.</li>';
       Prism.highlightAll();
     }
+    // Fallback demo data for when Google Sheets is unavailable
+    const fallbackNotes = [
+      {
+        "Course Code": "BCS-031",
+        "Topic": "Programming in C++ - Pointers and References",
+        "Name": "Abhay Kumar",
+        "Upload Notes": "https://example.com/cpp-pointers",
+        "Approved": "yes",
+        "Timestamp": new Date().toISOString()
+      },
+      {
+        "Course Code": "BCS-032",
+        "Topic": "DBMS - Normalization and ER Diagrams",
+        "Name": "Anjali Sharma",
+        "Upload Notes": "https://example.com/dbms-normalization",
+        "Approved": "yes",
+        "Timestamp": new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString()
+      },
+      {
+        "Course Code": "BCS-033",
+        "Topic": "Operating Systems - Memory Management",
+        "Name": "Rishabh Arora",
+        "Upload Notes": "https://example.com/os-memory",
+        "Approved": "yes",
+        "Timestamp": new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString()
+      }
+    ];
+
     fetch(SHEET_CSV_URL)
-      .then(r => r.text())
-      .then(csv => {
-        allNotes = parseCSV(csv).filter(n => n['Approved'] && n['Approved'].toLowerCase() === 'yes');
-        showNotes();
+      .then(r => {
+        if (!r.ok) throw new Error('Network response was not ok');
+        return r.text();
       })
-      .catch(() => {
-        document.getElementById('notes-ul').innerHTML = '<li>Could not load notes.</li>';
+      .then(csv => {
+        const parsedNotes = parseCSV(csv).filter(n => n['Approved'] && n['Approved'].toLowerCase() === 'yes');
+        allNotes = parsedNotes.length > 0 ? parsedNotes : fallbackNotes;
+        showNotes();
+        
+        // Show success message if data loaded from sheets
+        if (parsedNotes.length > 0) {
+          console.log('✅ Notes loaded successfully from Google Sheets');
+        }
+      })
+      .catch(error => {
+        console.warn('⚠️ Could not load notes from Google Sheets, using demo data:', error);
+        allNotes = fallbackNotes;
+        showNotes();
+        
+        // Show helpful message to users
+        const ul = document.getElementById('notes-ul');
+        if (ul) {
+          ul.innerHTML = '<li style="color: #666; font-style: italic;">📝 Demo notes shown (Google Sheets unavailable)</li>' + ul.innerHTML;
+        }
       });
     document.getElementById('notes-search').addEventListener('input', e => {
       showNotes(e.target.value);
